@@ -47,7 +47,7 @@ function App() {
   return (
     <React.Fragment>
       <Appbar position="relative">
-        <Typography variant="h4" align="center">
+        <Typography variant="h4" align="center" style={{ margin: 10 }}>
           To-do List
         </Typography>
       </Appbar>
