@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import Appbar from '@material-ui/core/AppBar';
 import { Typography } from '@material-ui/core';
-import Home from './Components/Home'
+import Home from './Components/Home';
+import ViewTasks from './Components/ViewTasks';
+import NewTask from './Components/NewTask';
+import EditTask from './Components/EditTask';
+import Task from './Components/Task';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 function App() {
@@ -49,6 +53,31 @@ function App() {
       </Appbar>
       <BrowserRouter>
         <Route path="/" component={Home} exact />
+        <Route path="/tasks"
+          component={() => <ViewTasks
+            messages={messages}
+            updateMessages={updateMessages}
+          />}
+          exact
+        />
+        <Route path="/tasks/:id"
+          component={() => <Task
+            messages={messages}
+            updateMessages={updateMessages}
+          />}
+        />
+        <Route path="/tasks/new"
+          component={() => <NewTask
+            messages={messages}
+            updateMessages={updateMessages}
+          />}
+        />
+        <Route path="/tasks/edit"
+          component={() => <EditTask
+            messages={messages}
+            updateMessages={updateMessages}
+          />}
+        />
       </BrowserRouter>
     </React.Fragment>
   );
