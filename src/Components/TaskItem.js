@@ -86,7 +86,7 @@ const TaskItem = ({ task }) => {
               </Typography>
               <section>
                 <p>Description: {thisTask.description}</p>
-                <p>Due Date: {thisTask.dueDate}</p>
+                <p>Due Date: {thisTask.dueDate.split("T")[0]} at {thisTask.dueDate.split("T")[1]}</p>
                 <p>Status: {taskStatus(thisTask)}</p>
                 <Grid
                   container
