@@ -8,6 +8,17 @@ import { Redirect } from 'react-router';
 const TaskItem = ({ task, tasks, updateTasks }) => {
   const [edit, setEdit] = useState(false);
 
+  const startTask = (id) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
+        task.isActive = true;
+      }
+      return task;
+    });
+
+    updateTasks(newTasks);
+  };
+
   const deleteTask = (id) => {
     const newTasks = tasks.map((task) => {
       if (task.id === id) {
@@ -17,7 +28,18 @@ const TaskItem = ({ task, tasks, updateTasks }) => {
     });
 
     updateTasks(newTasks);
-  }
+  };
+
+  const completeTask = (id) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === id) {
+        task.isCompleted = true;
+      }
+      return task;
+    });
+
+    updateTasks(newTasks);
+  };
 
   const taskStatus = (task) => {
     if (task.isCompleted) {
@@ -50,7 +72,7 @@ const TaskItem = ({ task, tasks, updateTasks }) => {
                       color="secondary"
                       style={styles.button}
                       onClick={() => {
-                        console.log("Task Started")
+                        startTask(task.id)
                       }
                       }>
                       Start Task
@@ -63,7 +85,7 @@ const TaskItem = ({ task, tasks, updateTasks }) => {
                       color="secondary"
                       style={styles.button}
                       onClick={() => {
-                        console.log("Task Completed")
+                        completeTask(task.id)
                       }
                       }>
                       Complete Task
