@@ -9,8 +9,10 @@ import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
 import { Redirect } from 'react-router';
 
-const TaskItem = ({ task, tasks, updateTasks }) => {
+const TaskItem = ({ task }) => {
   const [edit, setEdit] = useState(false);
+
+  const tasks = JSON.parse(localStorage.getItem('taskData'))
 
   const startTask = (id) => {
     const newTasks = tasks.map((task) => {
@@ -20,7 +22,7 @@ const TaskItem = ({ task, tasks, updateTasks }) => {
       return task;
     });
 
-    updateTasks(newTasks);
+    localStorage.setItem('taskData', JSON.stringify(newTasks));
   };
 
   const deleteTask = (id) => {
@@ -31,7 +33,7 @@ const TaskItem = ({ task, tasks, updateTasks }) => {
       return task;
     });
 
-    updateTasks(newTasks);
+    localStorage.setItem('taskData', JSON.stringify(newTasks));
   };
 
   const completeTask = (id) => {
@@ -42,7 +44,7 @@ const TaskItem = ({ task, tasks, updateTasks }) => {
       return task;
     });
 
-    updateTasks(newTasks);
+    localStorage.setItem('taskData', JSON.stringify(newTasks));
   };
 
   const taskStatus = (task) => {
