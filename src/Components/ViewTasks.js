@@ -3,7 +3,9 @@ import TaskItem from './TaskItem';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
-const ViewTasks = ({ tasks, updateTasks }) => {
+const ViewTasks = () => {
+
+  const tasks = JSON.parse(localStorage.getItem('taskData'))
 
   const taskList = tasks.map((task) => {
     return (
@@ -11,7 +13,6 @@ const ViewTasks = ({ tasks, updateTasks }) => {
         key={task.id}
         task={task}
         tasks={tasks}
-        updateTasks={updateTasks}
       />
     )
   })
