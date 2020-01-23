@@ -8,41 +8,51 @@ import EditTask from './Components/EditTask';
 import Task from './Components/Task';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-function App() {
-  const dummyMessages = [
-    {
-      id: 1,
-      user_id: 1,
-      title: "Take out garbage",
-      description: "Separate recycling and compost first",
-      dueDate: null,
-      isActive: false,
-      isCompleted: false,
-      isDeleted: false
-    },
-    {
-      id: 2,
-      user_id: 1,
-      title: "Walk dog",
-      description: "Take path through ravine, but make sure to bring bags",
-      dueDate: null,
-      isActive: false,
-      isCompleted: false,
-      isDeleted: false
-    },
-    {
-      id: 3,
-      user_id: 1,
-      title: "Finish assignment",
-      description: "Developer skills challenge for job application",
-      dueDate: null,
-      isActive: false,
-      isCompleted: false,
-      isDeleted: false
-    },
-  ];
+const dummyTasks = [
+  {
+    id: 1,
+    userId: 1,
+    title: "Take out garbage",
+    description: "Separate recycling and compost first",
+    dueDate: null,
+    isActive: false,
+    isCompleted: false,
+    isDeleted: false
+  },
+  {
+    id: 2,
+    userId: 1,
+    title: "Walk dog",
+    description: "Take path through ravine, but make sure to bring bags",
+    dueDate: null,
+    isActive: true,
+    isCompleted: false,
+    isDeleted: false
+  },
+  {
+    id: 3,
+    userId: 1,
+    title: "Finish assignment",
+    description: "Developer skills challenge for job application",
+    dueDate: null,
+    isActive: true,
+    isCompleted: true,
+    isDeleted: false
+  },
+  {
+    id: 4,
+    userId: 1,
+    title: "Get groceries",
+    description: "Need milk, eggs, and flour",
+    dueDate: null,
+    isActive: true,
+    isCompleted: false,
+    isDeleted: true
+  },
+];
 
-  const [messages, updateMessages] = useState(dummyMessages);
+function App() {
+  const [tasks, updateTasks] = useState(dummyTasks);
 
   return (
     <React.Fragment>
@@ -55,27 +65,27 @@ function App() {
         <Route path="/" component={Home} exact />
         <Route path="/tasks"
           component={() => <ViewTasks
-            messages={messages}
-            updateMessages={updateMessages}
+            tasks={tasks}
+            updateTasks={updateTasks}
           />}
           exact
         />
-        <Route path="/tasks/:id"
-          component={() => <Task
-            messages={messages}
-            updateMessages={updateMessages}
-          />}
-        />
         <Route path="/tasks/new"
           component={() => <NewTask
-            messages={messages}
-            updateMessages={updateMessages}
+            tasks={tasks}
+            updateTasks={updateTasks}
           />}
         />
-        <Route path="/tasks/edit"
+        <Route path="/tasks/:id"
+          component={() => <Task
+            tasks={tasks}
+            updateTasks={updateTasks}
+          />}
+        />
+        <Route path="/tasks/:id/edit"
           component={() => <EditTask
-            messages={messages}
-            updateMessages={updateMessages}
+            tasks={tasks}
+            updateTasks={updateTasks}
           />}
         />
       </BrowserRouter>
