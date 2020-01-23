@@ -14,7 +14,7 @@ const dummyTasks = [
     userId: 1,
     title: "Take out garbage",
     description: "Separate recycling and compost first",
-    dueDate: null,
+    dueDate: "2020-02-18T18:30",
     isActive: false,
     isCompleted: false,
     isDeleted: false
@@ -24,7 +24,7 @@ const dummyTasks = [
     userId: 1,
     title: "Walk dog",
     description: "Take path through ravine, but make sure to bring bags",
-    dueDate: null,
+    dueDate: "2020-01-20T20:30",
     isActive: true,
     isCompleted: false,
     isDeleted: false
@@ -34,7 +34,7 @@ const dummyTasks = [
     userId: 1,
     title: "Finish assignment",
     description: "Developer skills challenge for job application",
-    dueDate: null,
+    dueDate: "2020-02-24T10:30",
     isActive: true,
     isCompleted: true,
     isDeleted: false
@@ -44,7 +44,7 @@ const dummyTasks = [
     userId: 1,
     title: "Get groceries",
     description: "Need milk, eggs, and flour",
-    dueDate: null,
+    dueDate: "2020-02-24T10:30",
     isActive: true,
     isCompleted: false,
     isDeleted: true
@@ -81,6 +81,7 @@ function App() {
             tasks={tasks}
             updateTasks={updateTasks}
           />}
+          exact
         />
         <Route path="/tasks/:id/edit"
           component={() => <EditTask
