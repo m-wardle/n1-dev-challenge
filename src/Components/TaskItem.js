@@ -11,6 +11,7 @@ import { Redirect } from 'react-router';
 
 const TaskItem = ({ task }) => {
   const [edit, setEdit] = useState(false);
+  const [thisTask, updateThisTask] = useState(task);
 
   const tasks = JSON.parse(localStorage.getItem('taskData'))
 
@@ -23,6 +24,10 @@ const TaskItem = ({ task }) => {
     });
 
     localStorage.setItem('taskData', JSON.stringify(newTasks));
+    updateThisTask({
+      ...task,
+      isActive: true
+    })
   };
 
   const deleteTask = (id) => {
@@ -34,6 +39,10 @@ const TaskItem = ({ task }) => {
     });
 
     localStorage.setItem('taskData', JSON.stringify(newTasks));
+    updateThisTask({
+      ...task,
+      isDeleted: true
+    })
   };
 
   const completeTask = (id) => {
@@ -45,6 +54,10 @@ const TaskItem = ({ task }) => {
     });
 
     localStorage.setItem('taskData', JSON.stringify(newTasks));
+    updateThisTask({
+      ...task,
+      isCompleted: true
+    })
   };
 
   const taskStatus = (task) => {
@@ -59,48 +72,48 @@ const TaskItem = ({ task }) => {
 
   return (
     edit ?
-      <Redirect to={`/tasks/${task.id}/edit`} /> :
+      <Redirect to={`/tasks/${thisTask.id}/edit`} /> :
       (
-        !task.isDeleted ?
-          <Paper key={task.id} style={styles.paper}>
+        !thisTask.isDeleted ?
+          <Paper key={thisTask.id} style={styles.paper}>
             <Grid
               container
               direction="column"
               alignItems="center"
             >
               <Typography variant="h4">
-                {task.title}
+                {thisTask.title}
               </Typography>
               <section>
-                <p>Description: {task.description}</p>
-                <p>Due Date: {task.dueDate}</p>
-                <p>Status: {taskStatus(task)}</p>
+                <p>Description: {thisTask.description}</p>
+                <p>Due Date: {thisTask.dueDate.split("T")[0]} at {thisTask.dueDate.split("T")[1]}</p>
+                <p>Status: {taskStatus(thisTask)}</p>
                 <Grid
                   container
                   direction="row"
                   justify="center"
                 >
                   {
-                    taskStatus(task) === "Pending" ?
+                    taskStatus(thisTask) === "Pending" ?
                       <Button
                         variant="contained"
                         color="primary"
                         style={styles.accept}
                         onClick={() => {
-                          startTask(task.id)
+                          startTask(thisTask.id)
                         }
                         }>
                         Start Task
                     </Button> : null
                   }
                   {
-                    taskStatus(task) === "In Progress" ?
+                    taskStatus(thisTask) === "In Progress" ?
                       <Button
                         variant="contained"
                         color="secondary"
                         style={styles.complete}
                         onClick={() => {
-                          completeTask(task.id)
+                          completeTask(thisTask.id)
                         }
                         }>
                         Complete Task
@@ -121,7 +134,7 @@ const TaskItem = ({ task }) => {
                     color="secondary"
                     style={styles.delete}
                     onClick={() => {
-                      deleteTask(task.id)
+                      deleteTask(thisTask.id)
                     }
                     }>
                     Delete Task
