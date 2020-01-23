@@ -66,8 +66,9 @@ function App() {
         />
         <Route path="/tasks/new"
           component={() => <NewTask />}
+          exact
         />
-        <Route path="/tasks/:id"
+        <Route path="/tasks/:id/view"
           component={() => <Task />}
           exact
         />
