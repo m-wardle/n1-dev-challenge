@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import Appbar from '@material-ui/core/AppBar';
-import { Typography } from '@material-ui/core';
+import React from 'react';
+import Appbar from './Components/AppBar';
 import Home from './Components/Home';
 import ViewTasks from './Components/ViewTasks';
 import NewTask from './Components/NewTask';
@@ -54,14 +53,12 @@ const dummyTasks = [
 localStorage.setItem('taskData', JSON.stringify(dummyTasks))
 
 function App() {
+
   return (
     <React.Fragment>
-      <Appbar position="relative">
-        <Typography variant="h4" align="center" style={{ margin: 10 }}>
-          To-do List
-        </Typography>
-      </Appbar>
       <BrowserRouter>
+        <Appbar />
+
         <Route path="/" component={Home} exact />
         <Route path="/tasks"
           component={() => <ViewTasks />}
