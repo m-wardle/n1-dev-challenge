@@ -51,9 +51,9 @@ const dummyTasks = [
   },
 ];
 
-function App() {
-  const [tasks, updateTasks] = useState(dummyTasks);
+localStorage.setItem('taskData', JSON.stringify(dummyTasks))
 
+function App() {
   return (
     <React.Fragment>
       <Appbar position="relative">
@@ -64,29 +64,17 @@ function App() {
       <BrowserRouter>
         <Route path="/" component={Home} exact />
         <Route path="/tasks"
-          component={() => <ViewTasks
-            tasks={tasks}
-            updateTasks={updateTasks}
-          />}
+          component={() => <ViewTasks />}
           exact
         />
         <Route path="/tasks/new"
-          component={() => <NewTask
-            tasks={tasks}
-            updateTasks={updateTasks}
-          />}
+          component={() => <NewTask />}
         />
         <Route path="/tasks/:id"
-          component={() => <Task
-            tasks={tasks}
-            updateTasks={updateTasks}
-          />}
+          component={() => <Task />}
         />
         <Route path="/tasks/:id/edit"
-          component={() => <EditTask
-            tasks={tasks}
-            updateTasks={updateTasks}
-          />}
+          component={() => <EditTask />}
         />
       </BrowserRouter>
     </React.Fragment>
