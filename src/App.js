@@ -72,6 +72,7 @@ function App() {
         />
         <Route path="/tasks/:id"
           component={() => <Task />}
+          exact
         />
         <Route path="/tasks/:id/edit"
           component={() => <EditTask />}

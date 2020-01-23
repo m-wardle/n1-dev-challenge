@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams, Redirect } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-const EditTask = ({ tasks, updateTasks }) => {
+const EditTask = () => {
+  const tasks = JSON.parse(localStorage.getItem('taskData'));
   const { id } = useParams();
   const currentTask = tasks.find(task => task.id === parseInt(id));
   const [title, setTitle] = useState(currentTask.title);
   const [description, setDescription] = useState(currentTask.description);
   const [dueDate, setDueDate] = useState(currentTask.dueDate);
   const [goTasks, setGoTasks] = useState(false);
-
-  useEffect(() => {
-    return () => setGoTasks(true)
-  })
 
   const submit = (id) => {
     const newTasks = tasks.map((task) => {
@@ -28,7 +25,8 @@ const EditTask = ({ tasks, updateTasks }) => {
       return task
     })
 
-    updateTasks(newTasks)
+    localStorage.setItem('taskData', JSON.stringify(newTasks));
+    setGoTasks(true)
   }
 
   return (goTasks ? <Redirect to="/tasks" /> :
