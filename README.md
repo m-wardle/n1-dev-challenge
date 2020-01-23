@@ -1,5 +1,5 @@
 # n1-dev-challenge
-Quick to-do list front-end demo.
+Quick to-do list front-end demo. Available on Heroku at https://n1-dev-test.herokuapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
